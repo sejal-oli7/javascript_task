@@ -1,22 +1,29 @@
-console.log(name);
+// console.log(name);
 
-var name = "Sejal";
+// var name = "Sejal";
 
-console.log(name);
-
-
+// console.log(name);
 
 
 
 
-hello("Sejal oli")
 
 
-function hello(par){
-    console.log(par);
+// hello("Sejal oli")
+
+
+// function hello(par){
+//     console.log(par);
+// }
+
+
+
+
+// console.log(10/0);
+
+
+calculates();
+function calculates() {
+    console.log("Calculator ");
 }
 
-
-
-
-console.log(10/0);
