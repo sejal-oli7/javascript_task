@@ -1,0 +1,423 @@
+
+1. Temporal Dead Zone (TDZ)
+The Temporal Dead Zone (TDZ) is the time between when a variable is declared and when it is initialized.
+
+let and const variables cannot be used before they are declared.
+
+console.log(name); // Error
+
+let name = "Sejal";
+Why?
+
+Because let and const stay in the Temporal Dead Zone until the declaration line is reached.
+
+2. Hoisting
+Hoisting means JavaScript moves declarations to the top of their scope before execution.
+
+var
+console.log(a);
+
+var a = 10;
+Output
+
+undefined
+Because JavaScript treats it like:
+
+var a;
+
+console.log(a);
+
+a = 10;
+let
+console.log(a);
+
+let a = 10;
+Output
+
+ReferenceError
+Because of the Temporal Dead Zone.
+
+3. A Variable Cannot Be Declared Twice
+Using let
+let age = 20;
+let age = 25;
+Output
+
+SyntaxError
+Using const
+const PI = 3.14;
+const PI = 3.1415;
+Also gives an error.
+
+Using var
+var age = 20;
+var age = 25;
+
+console.log(age);
+Output
+
+25
+var allows redeclaration.
+
+4. Debugging
+Definition
+
+Debugging means finding and fixing errors (bugs) in a program.
+
+Example
+
+console.log(x);
+If x is not defined, you debug by defining it.
+
+5. Number to String
+Method 1
+let num = 100;
+
+let str = String(num);
+
+console.log(str);
+console.log(typeof str);
+Output
+
+"100"
+string
+Method 2
+let num = 100;
+
+let str = num.toString();
+6. String to Number
+Using Number()
+let age = "20";
+
+let num = Number(age);
+
+console.log(num);
+console.log(typeof num);
+Output
+
+20
+number
+7. parseInt()
+Converts a string into an integer.
+
+let value = "25.8";
+
+console.log(parseInt(value));
+Output
+
+25
+8. parseFloat()
+Converts a string into a decimal number.
+
+let value = "25.8";
+
+console.log(parseFloat(value));
+Output
+
+25.8
+9. UTC (Global Time)
+UTC (Coordinated Universal Time) is the world's standard time.
+
+Servers usually store time in UTC because everyone can convert it into their local timezone.
+
+Example
+
+let date = new Date();
+
+console.log(date.toUTCString());
+Output
+
+Mon, 06 Jul 2026 06:30:00 GMT
+10. Local Time
+Local time is the time according to your own country or region.
+
+Example (Nepal)
+
+UTC +5:45
+let date = new Date();
+
+console.log(date.toString());
+Example Output
+
+Mon Jul 06 2026 12:15:00 GMT+0545 (Nepal Time)
+11. DRY Principle
+DRY = Don't Repeat Yourself
+
+Definition
+
+Every piece of knowledge or logic should exist in only one place in your code.
+
+Bad Example
+let total1 = 10 + 20;
+let total2 = 10 + 20;
+let total3 = 10 + 20;
+The same logic is repeated.
+
+Good Example
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(10, 20));
+console.log(add(10, 20));
+console.log(add(10, 20));
+The logic is written once and reused.
+
+12. Objects
+An object stores data as key-value pairs.
+
+Keys are strings (or converted to strings).
+
+Values can be any data type.
+
+Example
+
+const student = {
+    name: "Sejal",
+    age: 20,
+    isStudent: true,
+    marks: [80, 90, 95]
+};
+
+console.log(student);
+Output
+
+{
+  name: "Sejal",
+  age: 20,
+  isStudent: true,
+  marks: [80,90,95]
+}
+13. JSON
+JSON = JavaScript Object Notation
+
+JSON is used to exchange data between applications.
+
+JSON keys and string values must be inside double quotes.
+
+Example
+
+{
+    "name": "Sejal",
+    "age": 20
+}
+JSON is a string format.
+
+Convert object to JSON
+
+const student = {
+    name: "Sejal",
+    age: 20
+};
+
+let json = JSON.stringify(student);
+
+console.log(json);
+Output
+
+'{"name":"Sejal","age":20}'
+Convert JSON back into an object
+
+let obj = JSON.parse(json);
+
+console.log(obj);
+14. this Keyword
+this refers to the object that is currently calling the function (the current object context).
+
+Example
+
+const person = {
+    name: "Sejal",
+
+    greet() {
+        console.log(this.name);
+    }
+};
+
+person.greet();
+Output
+
+Sejal
+Here, this.name means person.name.
+
+15. Why Use Objects?
+Objects group related data together.
+
+Without an object
+
+let name = "Sejal";
+let age = 20;
+let city = "Kathmandu";
+These variables are separate.
+
+With an object
+
+const student = {
+    name: "Sejal",
+    age: 20,
+    city: "Kathmandu"
+};
+Everything related to the student is stored together.
+
+Access values
+
+console.log(student.name);
+console.log(student.age);
+16. Destructuring
+Meaning in English
+Destructuring means taking values out of an object or an array and storing them in separate variables easily.
+
+Instead of writing:
+
+const student = {
+    name: "Sejal",
+    age: 20,
+    city: "Kathmandu"
+};
+
+const name = student.name;
+const age = student.age;
+
+console.log(name);
+console.log(age);
+You can use destructuring:
+
+const student = {
+    name: "Sejal",
+    age: 20,
+    city: "Kathmandu"
+};
+
+const { name, age } = student;
+
+console.log(name);
+console.log(age);
+Output
+
+Sejal
+20
+Renaming Variables
+const student = {
+    name: "Sejal",
+    age: 20
+};
+
+const { name: studentName, age: studentAge } = student;
+
+console.log(studentName);
+console.log(studentAge);
+Output
+
+Sejal
+20
+Array Destructuring
+const colors = ["Red", "Green", "Blue"];
+
+const [first, second] = colors;
+
+console.log(first);
+console.log(second);
+Output
+
+Red
+Green
+Simple Definition for Exams
+Destructuring: A JavaScript feature that extracts values from objects or arrays and assigns them to variables in a shorter and cleaner way.
+
+
+closure means
+
+A closure is a JavaScript feature where an inner function remembers and can access the variables of its outer function even after the outer function has finished executing.
+
+Simple Definition (Exam)
+Closure: A closure is created when a function remembers and can use variables from its outer (lexical) scope, even after the outer function has returned.
+
+Example 1
+function outer() {
+    let count = 0;
+
+    function inner() {
+        count++;
+        console.log(count);
+    }
+
+    return inner;
+}
+
+const counter = outer();
+
+counter(); // 1
+counter(); // 2
+counter(); // 3
+How it works
+outer() is called.
+
+count is created with value 0.
+
+outer() returns the inner function.
+
+Normally, count would disappear after outer() finishes.
+
+But because inner still uses count, JavaScript keeps it alive.
+
+Every time counter() is called, it remembers the same count variable.
+
+Example 2
+function greet(name) {
+
+    function sayHello() {
+        console.log("Hello " + name);
+    }
+
+    return sayHello;
+}
+
+const helloSejal = greet("Sejal");
+
+helloSejal();
+Output
+
+Hello Sejal
+Even though greet() has finished executing, sayHello() still remembers the value of name.
+
+Why are Closures Useful?
+Closures are commonly used for:
+
+Data privacy (private variables)
+
+Counters
+
+Callbacks
+
+Event handlers
+
+Function factories
+
+Memoization
+
+Real-world Counter Example
+function createCounter() {
+    let count = 0;
+
+    return function () {
+        count++;
+        return count;
+    };
+}
+
+const counter = createCounter();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+Here, count is private. It cannot be accessed directly:
+
+console.log(count); // Error
+Only the returned function can access and modify it.
+
+One-Line Memory Trick
+Closure = Function + Remembered Outer Variables
+
+A closure allows a function to remember the variables from its outer scope, even after the outer function has finished executing.
+
+
