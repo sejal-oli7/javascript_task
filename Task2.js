@@ -164,27 +164,36 @@ findColdHour();
 
 
 
-// nested prmise (.then())
-const london = "https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.11&current_weather=true";
-const paris = "https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current_weather=true";
+// Nested Promise (.then())
+
+const london =
+    "https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.11&current_weather=true";
+
+const paris =
+    "https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current_weather=true";
 
 function londonParisWeather() {
-    fetch(london)
-        .then(res => res.json())
-        .then(londonData =>
-            fetch(paris)
-                .then(res => res.json())
-                .then(parisData =>
-                    console.log({
+    return fetch(london)
+        .then((response) => response.json())
+        .then((londonData) => {
+            return fetch(paris)
+                .then((response) => response.json())
+                .then((parisData) => {
+                    return {
                         London: londonData.current_weather.temperature,
                         Paris: parisData.current_weather.temperature
-                    })
-                )
-        )
-        .catch(err => console.error(err));
+                    };
+                });
+        });
 }
 
-londonParisWeather();
+londonParisWeather()
+    .then((temperatures) => {
+        console.log(temperatures);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 
 
 
