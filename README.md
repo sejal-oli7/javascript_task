@@ -45,4 +45,6 @@ This repository serves as a collection of JavaScript practice programs and examp
 
 ## Author
 
-**Sejal Oli**
+**## Author
+
+**sejal-oli7**
